@@ -38,14 +38,17 @@ public class ScoreService {
 			user.setEmail(scoreDTO.getEmail());
 			user.setId(null);
 			user = userRepository.saveAndFlush(user); //saveAndFlush garante a devolucao do objeto atualizado
+		}else {
+			user = opt.get();
 		}
 		
+				
 		Movie movie = movieRepository.findById(scoreDTO.getMovieId()).get();
 		
 		Score score = new Score();
 		score.setMovie(movie);
 		score.setUser(user);
-		score.setValue(scoreDTO.getScore());
+		score.setValue(scoreDTO.getValue());
 		score = scoreRepository.saveAndFlush(score);
 		
 		//soma a nota inserida com todas notas ja feitas
