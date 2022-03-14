@@ -22,7 +22,7 @@ function Listing() {
     });
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/movies/?page=${pageNumber}&size=30&sort=title`)
+        axios.get(`${BASE_URL}/movies/?page=${pageNumber}&size=12&sort=title`)
         .then(response => {
     
             //fazendo um casting do data da response para o tipo MoviePage
@@ -30,18 +30,14 @@ function Listing() {
             setPage(data);
         })
     }, [pageNumber]);
- 
-/*     const movie = {
-        id: 1,
-        image: "https://www.themoviedb.org/t/p/w533_and_h300_bestv2/jBJWaqoSCiARWtfV0GlqHrcdidd.jpg",
-        title: "The Witcher",
-        count: 2,
-        score: 4.5
-    }; */
+
+    const handlePageChange = (newPageNumber:number) => {
+        setPageNumber(newPageNumber)
+    };  
 
     return (
         <>
-            <Pagination></Pagination>
+            <Pagination page = {page} onChange = {handlePageChange}></Pagination>
 
             <div className="container">
                 <div className="row">
